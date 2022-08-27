@@ -1,4 +1,4 @@
-# shrinkwrap_vs_slivers
+# slivers
 
 A new Flutter project.
 

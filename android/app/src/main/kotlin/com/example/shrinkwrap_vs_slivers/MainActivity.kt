@@ -1,4 +1,4 @@
-package com.example.shrinkwrap_vs_slivers
+package com.example.slivers
 
 import io.flutter.embedding.android.FlutterActivity
 
