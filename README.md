@@ -12,3 +12,7 @@ A Flutter project for understanding slivers.
 - SliverPadding
 - SliverGrid
 - SliverList
+
+## App Screenshot
+
+<img src = "assets/screenshots/ss1.png" alt="ss1" width="300" height="600"/>
