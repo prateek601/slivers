@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:slivers/services.dart';
 
@@ -13,77 +11,66 @@ class WeeklyForecastList extends StatelessWidget {
 
     return SliverList(
       delegate: SliverChildBuilderDelegate(
-        (context, outerIndex) {
-          return ListView.builder(
-            physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            itemBuilder: (context, innerIndex) {
-              log('outer index is: $outerIndex, inner index is: $innerIndex');
-              final dailyForecast = Server.getDailyForecastByID(innerIndex);
-              return Card(
-                child: Row(
-                  children: <Widget>[
-                    SizedBox(
-                      height: 130.0,
-                      width: 130.0,
-                      child: Stack(
-                        fit: StackFit.expand,
-                        children: <Widget>[
-                          DecoratedBox(
-                            position: DecorationPosition.foreground,
-                            decoration: const BoxDecoration(
-                              gradient: RadialGradient(
-                                colors: <Color>[
-                                  Colors.white38,
-                                  Colors.transparent
-                                ],
-                              ),
-                            ),
-                            child: Image.network(
-                              dailyForecast.imageId,
-                              fit: BoxFit.cover,
-                            ),
+        (context, index) {
+          final dailyForecast = Server.getDailyForecastByID(index);
+          return Card(
+            child: Row(
+              children: <Widget>[
+                SizedBox(
+                  height: 110.0,
+                  width: 110.0,
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: <Widget>[
+                      DecoratedBox(
+                        position: DecorationPosition.foreground,
+                        decoration: const BoxDecoration(
+                          gradient: RadialGradient(
+                            colors: <Color>[Colors.white38, Colors.transparent],
                           ),
-                          Center(
-                            child: Text(
-                              dailyForecast.getDate(currentDate.day).toString(),
-                              style: textTheme.headline2,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              dailyForecast.getWeekday(currentDate.weekday),
-                              style: textTheme.headline4,
-                            ),
-                            const SizedBox(height: 10.0),
-                            Text(dailyForecast.description),
-                          ],
+                        ),
+                        child: Image.network(
+                          dailyForecast.imageId,
+                          fit: BoxFit.cover,
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Text(
-                        '${dailyForecast.highTemp} | ${dailyForecast.lowTemp} F',
-                        style: textTheme.subtitle1,
+                      Center(
+                        child: Text(
+                          dailyForecast.getDate(currentDate.day).toString(),
+                          style: textTheme.headline2,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              );
-            },
-            itemCount: 7,
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          dailyForecast.getWeekday(currentDate.weekday),
+                          style: textTheme.headline4,
+                        ),
+                        const SizedBox(height: 10.0),
+                        Text(dailyForecast.description),
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text(
+                    '${dailyForecast.highTemp} | ${dailyForecast.lowTemp} F',
+                    style: textTheme.subtitle1,
+                  ),
+                ),
+              ],
+            ),
           );
         },
-        childCount: 2,
+        childCount: 7,
       ),
     );
   }

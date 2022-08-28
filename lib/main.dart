@@ -40,6 +40,7 @@ class HorizonsApp extends StatelessWidget {
               },
               flexibleSpace: FlexibleSpaceBar(
                 title: const Text('Horizons'),
+                centerTitle: true,
                 background: DecoratedBox(
                   position: DecorationPosition.foreground,
                   decoration: BoxDecoration(
@@ -64,6 +65,7 @@ class HorizonsApp extends StatelessWidget {
                 ],
               ),
             ),
+            const WeeklyForecastList(),
             SliverToBoxAdapter(
               child: Column(
                 children: [
@@ -115,7 +117,6 @@ class HorizonsApp extends StatelessWidget {
                 ),
               ),
             ),
-            const WeeklyForecastList()
           ],
         ),
       ),
